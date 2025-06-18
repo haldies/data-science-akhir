@@ -142,17 +142,24 @@ Contoh insight:
 
 ## **Menjalankan Sistem Machine Learning**
 
-**1. Install Dependencies**
+### **1. Install Dependensi**
+
+Pastikan Anda berada di direktori proyek, lalu jalankan perintah berikut untuk menginstal semua library yang dibutuhkan:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-**2. Jalankan Aplikasi Streamlit**
+### **2. Jalankan Aplikasi Streamlit**
+
+Setelah semua dependensi terinstal, jalankan aplikasi dengan perintah:
 
 ```bash
 streamlit run app.py
 ```
+Aplikasi akan terbuka secara otomatis di browser. Jika tidak, Anda bisa membukanya secara manual melalui alamat yang ditampilkan di terminal, atau kunjungi:
+
+🌐 [Link Deploy Streamlit](https://haldies-data-science-akhir-app-frspgl.streamlit.app/)
 
 ---
 
