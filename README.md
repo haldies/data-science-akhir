@@ -165,7 +165,7 @@ Aplikasi akan terbuka secara otomatis di browser. Jika tidak, Anda bisa membukan
 
 ## **Conclusion**
 
-Proyek ini bertujuan untuk mengatasi masalah tingginya angka dropout di Jaya Jaya Institut dengan memanfaatkan data historis mahasiswa untuk membangun model prediksi. Berikut beberapa temuan utama:
+Proyek ini bertujuan untuk mengatasi masalah tingginya angka dropout di Jaya Jaya Institut dengan memanfaatkan data historis mahasiswa untuk membangun model prediksi.Sebagai bagian dari solusi, saya mengembangkan model machine learning untuk memprediksi risiko dropout mahasiswa. Beberapa algoritma telah diuji, dan hasil terbaik diperoleh dari Random Forest Classifier dengan akurasi sebesar 84%, mengungguli algoritma XGBoost dan SVM dalam eksperimen ini. Model ini diharapkan dapat membantu institusi dalam mengidentifikasi mahasiswa berisiko tinggi secara lebih awal dan merancang intervensi yang tepat sasaran. Berikut beberapa temuan utama:
 
 * **Performa Akademik Awal yang Konsisten:**
   Mahasiswa dengan nilai dan jumlah mata kuliah lulus yang baik sejak awal memiliki peluang tinggi untuk lulus.
