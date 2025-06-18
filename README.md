@@ -24,25 +24,24 @@ Fokus proyek ini adalah melakukan analisis serta membangun model prediksi attrit
 
 * **Pemahaman Data (Data Understanding)**
 
-  * Melakukan import dan eksplorasi awal terhadap dataset karyawan yang bersumber dari data terbuka.
+  * Melakukan import dan eksplorasi awal terhadap dataset student yang bersumber dari data terbuka.
   * Memeriksa struktur, jenis data, dan distribusi nilai setiap variabel.
 
-* **Pembersihan dan Persiapan Data (Data Cleaning & Preparation)**
-
-  * Menangani nilai hilang pada kolom Attrition.
-  * Menghapus fitur yang tidak relevan dalam pemodelan.
-  * Membersihkan data duplikat dan mengidentifikasi outlier dengan visualisasi boxplot.
-  * Menyesuaikan tipe data dan melakukan encoding pada variabel kategori.
 
 * **Eksplorasi Data (Exploratory Data Analysis / EDA)**
-
-  * Memvisualisasikan distribusi variabel target Attrition.
+  * Memvisualisasikan distribusi variabel target student.
   * Menganalisis hubungan antar fitur numerik menggunakan korelasi Pearson.
-  * Membuat scatter plot antara TotalWorkingYears dan MonthlyIncome untuk mengamati pola.
+  
+* **Pembersihan dan Persiapan Data (Data Cleaning & Preparation)**
+
+  * Menangani nilai hilang pada kolom student.
+  * Menghapus fitur yang tidak relevan dalam pemodelan.
+  * Membersihkan data duplikat.
+  * Menyesuaikan tipe data dan melakukan encoding pada variabel kategori.
 
 * **Pemodelan Data (Modeling)**
 
-  * Membangun beberapa model klasifikasi seperti K-Nearest Neighbors, Decision Tree, Random Forest, Support Vector Machine, dan Naive Bayes.
+  * Membangun beberapa model klasifikasi Random Forest, Support Vector Machine, dan Naive Bayes.
   * Melakukan pembagian data menjadi set pelatihan dan pengujian dengan train-test split.
 
 * **Evaluasi Model (Evaluation)**

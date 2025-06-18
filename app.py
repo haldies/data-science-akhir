@@ -2,68 +2,53 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
+import joblib
 from sklearn.metrics import classification_report, accuracy_score, confusion_matrix
+from sklearn.model_selection import train_test_split
 
-# --- LOAD DATA ---
+
 @st.cache_resource
 def load_data():
     url = 'https://raw.githubusercontent.com/dicodingacademy/dicoding_dataset/refs/heads/main/students_performance/data.csv'
     df = pd.read_csv(url, sep=';')
-    return df
-
-def preprocess(df):
     df['Status_bin'] = df['Status'].apply(lambda x: 1 if x == 'Dropout' else 0)
     df['Gender'] = df['Gender'].apply(lambda x: 1 if x == 'M' else 0)
     return df
 
-def train_model(df):
-    features = [
-        'Curricular_units_2nd_sem_approved',
-        'Curricular_units_2nd_sem_grade',
-        'Curricular_units_1st_sem_approved',
-        'Curricular_units_1st_sem_grade',
-        'Tuition_fees_up_to_date',
-        'Scholarship_holder',
-        'Age_at_enrollment',
-        'Debtor',
-        'Gender',
-    ]
-    X = df[features]
-    y = df['Status_bin']
-
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-    model = RandomForestClassifier(n_estimators=100, random_state=42)
-    model.fit(X_train, y_train)
-    y_pred = model.predict(X_test)
-    acc = accuracy_score(y_test, y_pred)
-    return model, X_test, y_test, y_pred, acc
+@st.cache_resource
+def load_model():
+    model = joblib.load('./model/best_model.pkl')  # Pastikan path model benar
+    return model
 
 st.set_page_config(page_title="Deteksi Dropout Mahasiswa", layout="wide")
 st.title("🎓 Dashboard Deteksi Dropout Mahasiswa - Jaya Jaya Institut")
 
-# Sidebar navigasi
-menu = st.sidebar.radio("Navigasi", ["🤖 Prediksi Dropout","📊 Ringkasan Data" "📈 Evaluasi Model" ])
+menu = st.sidebar.radio("Navigasi", ["🤖 Prediksi Dropout", "📈 Evaluasi Model"])
 
-# Load dan proses data
 df = load_data()
-df = preprocess(df)
-model, X_test, y_test, y_pred, accuracy = train_model(df)
+model = load_model()
 
-if menu == "📊 Ringkasan Data":
-    st.markdown(f"- Jumlah total mahasiswa: **{len(df)}**")
-    st.markdown(f"- Jumlah dropout: **{df['Status_bin'].sum()}**")
-    st.markdown(f"- Akurasi model saat ini: **{accuracy:.2%}**")
+features = [
+    'Curricular_units_2nd_sem_approved',
+    'Curricular_units_2nd_sem_grade',
+    'Curricular_units_1st_sem_approved',
+    'Curricular_units_1st_sem_grade',
+    'Tuition_fees_up_to_date',
+    'Scholarship_holder',
+    'Age_at_enrollment',
+    'Debtor',
+    'Gender',
+]
 
-    # Plot visual dropout
-    fig, ax = plt.subplots(figsize=(6, 4))
-    sns.countplot(x='Status', data=df, palette='Set2', ax=ax)
-    ax.set_title("Distribusi Status Mahasiswa")
-    st.pyplot(fig)
+X = df[features]
+y = df['Status_bin']
 
-# --- PREDIKSI ---
-elif menu == "🤖 Prediksi Dropout":
+# Split data untuk evaluasi model
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+y_pred = model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+
+if menu == "🤖 Prediksi Dropout":
     st.subheader("🔍 Prediksi Dropout Mahasiswa Baru")
 
     with st.form("input_form"):
@@ -104,9 +89,10 @@ elif menu == "🤖 Prediksi Dropout":
         else:
             st.success(f"✅ Mahasiswa ini kemungkinan **TIDAK dropout** dengan probabilitas {prob:.2%}")
 
-# --- EVALUASI MODEL ---
 elif menu == "📈 Evaluasi Model":
     st.subheader("📊 Evaluasi Model Random Forest")
+
+    st.markdown(f"- Akurasi model pada data uji: **{accuracy:.2%}**")
 
     cm = confusion_matrix(y_test, y_pred)
     fig, ax = plt.subplots()
