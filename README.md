@@ -95,18 +95,124 @@ docker run -d -p 3000:3000 `
 
 | Item          | Value                                          |
 | ------------- | ---------------------------------------------- |
-| **URL Akses** | [http://localhost:3000](http://localhost:3000) |
+| **URL Akses** | [http://**localhost**:3000](http://localhost:3000) |
 | **Email**     | `root@mail.com`                                |
 | **Password**  | `root123`                                      |
 | **Port**      | 3000                                           |
 
-### **Business Dashboard**
 
+## **Business Dashboard**
 
-### Menjalankan Sistem Machine Learning
+Untuk mendukung pendeteksian dini risiko dropout dan pengambilan keputusan, dashboard bisnis interaktif sangat esensial. Dengan memanfaatkan Metabase (seperti yang dijelaskan dalam persiapan proyek), sebuah dashboard dapat dibangun untuk memvisualisasikan insight kunci secara real-time.
 
-### **Conclusion**
+### **Metrik Utama yang Akan Ditampilkan**
 
+**1. Tren Dropout Berdasarkan Semester**
+Visualisasi jumlah atau persentase dropout dari semester 1 ke semester 2.
+Contoh insight:
 
-### **Rekomendasi Action Items (Optional)**
+> Mahasiswa Dropout memiliki penurunan tajam dari semester 1 ke semester 2, dengan Grade turun dari 10.311 menjadi 8.383 dan Approved turun dari 3.626 menjadi 2.757.
+
+**2. Proporsi Dropout Berdasarkan Status Pembayaran**
+Perbandingan mahasiswa dropout vs. lulus berdasarkan status pembayaran.
+Contoh insight:
+
+> Dari 528 mahasiswa yang tidak bayar tepat waktu, \~87% dropout (457 dari 528). Sebaliknya, dari 3.896 mahasiswa yang membayar tepat waktu, hanya \~25% yang dropout.
+
+**3. Proporsi Dropout Berdasarkan Status Beasiswa**
+Visualisasi tingkat dropout antara mahasiswa penerima beasiswa dan non-beasiswa.
+Contoh insight:
+
+> Mahasiswa tanpa beasiswa lebih banyak mengalami dropout (1.287) dibanding yang lulus (1.374), sementara mahasiswa penerima beasiswa jauh lebih berpeluang lulus (835 lulusan vs 134 dropout).
+
+**4. Rata-rata Usia Masuk Berdasarkan Status Kelulusan**
+Membandingkan usia rata-rata mahasiswa dropout (26 tahun) dengan lulus/aktif (\~22 tahun).
+
+**5. Proporsi Dropout Berdasarkan Jenis Kelamin**
+Menampilkan tingkat dropout yang lebih tinggi pada laki-laki.
+Contoh insight:
+
+> Hampir setengah dari mahasiswa laki-laki (dropout rate \~45.1%) mengalami dropout, dibandingkan dengan perempuan (dropout rate \~25.1%).
+
+**6. Proporsi Dropout Berdasarkan Status Utang (Debtor)**
+Contoh insight:
+
+> Dari 503 mahasiswa yang berutang (Debtor=1), 312 (sekitar 62%) adalah dropout.
+
+---
+
+## **Menjalankan Sistem Machine Learning**
+
+**1. Install Dependencies**
+
+```bash
+pip install -r requirements.txt
+```
+
+**2. Jalankan Aplikasi Streamlit**
+
+```bash
+streamlit run app.py
+```
+
+---
+
+## **Conclusion**
+
+Proyek ini bertujuan untuk mengatasi masalah tingginya angka dropout di Jaya Jaya Institut dengan memanfaatkan data historis mahasiswa untuk membangun model prediksi. Berikut beberapa temuan utama:
+
+* **Performa Akademik Awal yang Konsisten:**
+  Mahasiswa dengan nilai dan jumlah mata kuliah lulus yang baik sejak awal memiliki peluang tinggi untuk lulus.
+
+* **Penurunan Performa di Semester Lanjut:**
+  Mahasiswa yang nilai dan kelulusan mata kuliahnya menurun dari semester 1 ke 2 cenderung dropout.
+
+* **Kedisiplinan Pembayaran:**
+  Keterlambatan atau ketidakpatuhan dalam membayar uang kuliah berkorelasi tinggi dengan dropout.
+
+* **Dukungan Beasiswa:**
+  Penerima beasiswa memiliki tingkat kelulusan lebih tinggi dibandingkan yang tidak menerima beasiswa.
+
+* **Usia Masuk:**
+  Mahasiswa dengan usia masuk lebih tua cenderung memiliki risiko dropout yang lebih tinggi.
+
+* **Jenis Kelamin:**
+  Mahasiswa laki-laki memiliki dropout rate yang lebih tinggi dibanding perempuan.
+
+* **Status Utang (Debtor):**
+  Mahasiswa dengan status utang memiliki kemungkinan dropout yang lebih tinggi.
+
+---
+
+## **Rekomendasi Action Items**
+
+### 1. Program Intervensi Dini Berbasis Akademik
+
+* **Tindakan:** Identifikasi mahasiswa dengan penurunan performa dari semester 1 ke 2.
+* **Rekomendasi:** Tawarkan konseling akademik, mentoring, dan pemantauan berkala.
+
+### 2. Sistem Pemantauan dan Dukungan Pembayaran
+
+* **Tindakan:** Deteksi dini keterlambatan pembayaran.
+* **Rekomendasi:** Sediakan opsi cicilan, bantuan keuangan, atau informasi beasiswa.
+
+### 3. Perluasan Program Beasiswa dan Bantuan Finansial
+
+* **Tindakan:** Tingkatkan akses dan cakupan beasiswa.
+* **Rekomendasi:** Tambahkan sponsor, beasiswa berbasis kebutuhan, dan bantuan pendidikan mikro.
+
+### 4. Program Adaptasi untuk Mahasiswa Usia Lebih Tua
+
+* **Tindakan:** Buat program khusus adaptasi dan pendampingan.
+* **Rekomendasi:** Sesi manajemen waktu, dukungan sosial, dan fleksibilitas akademik.
+
+### 5. Inisiatif Dukungan Berbasis Gender
+
+* **Tindakan:** Identifikasi tantangan khusus mahasiswa laki-laki.
+* **Rekomendasi:** Program mentoring dan kelompok diskusi yang relevan.
+
+### 6. Pendekatan Proaktif terhadap Mahasiswa dengan Utang
+
+* **Tindakan:** Deteksi dan bantu mahasiswa dengan status Debtor sejak awal.
+* **Rekomendasi:** Tawarkan konseling keuangan dan rencana pembayaran bertahap.
 
